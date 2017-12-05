@@ -82,12 +82,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// References
+		/// Reference slide post
 		///</summary>
-		[ImplementPropertyType("referencesPost")]
-		public IHtmlString ReferencesPost
+		[ImplementPropertyType("referenceSlidePost")]
+		public IEnumerable<IPublishedContent> ReferenceSlidePost
 		{
-			get { return this.GetPropertyValue<IHtmlString>("referencesPost"); }
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("referenceSlidePost"); }
 		}
 
 		///<summary>

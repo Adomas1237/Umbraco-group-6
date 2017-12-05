@@ -3,94 +3,74 @@
 
 @using Umbraco.Web.Models
 @using System.Web.Mvc.Html
-@using ClientDependency.Core.Mvc
 @using Umbraco.Web
 @using Umbraco.Web.Controllers
-
-
-
-
-
 
 @{
     var loginModel = new LoginModel();
     
     Html.EnableClientValidation();
     Html.EnableUnobtrusiveJavaScript();
-    Html.RequiresJs("/umbraco_client/ui/jquery.js");
-    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
-    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
+
 }
 
-@* NOTE: This RenderJsHere code should be put on your main template page where the rest of your script tags are placed *@
-@Html.RenderJsHere()
-
-@using (Html.BeginUmbracoForm<UmbLoginController>("HandleLogin"))
-{
-    <fieldset>
-        <legend>Login</legend>
-        
-        @Html.ValidationSummary("loginModel", true)
-
-        @Html.LabelFor(m => loginModel.Username)
-        @Html.TextBoxFor(m => loginModel.Username)
-        @Html.ValidationMessageFor(m => loginModel.Username)
-        <br />
-
-        @Html.LabelFor(m => loginModel.Password)
-        @Html.PasswordFor(m => loginModel.Password)
-        @Html.ValidationMessageFor(m => loginModel.Password)
-        <br />
-
-        <button>Login</button>
-    </fieldset>  
-}
 
 
 
 @{
-
-    @*
-        You can specify a custom member type alias in the constructor, the default is 'Member'
-        for example, to use 'Custom Member' you'd use this syntax:
-        
-        var registerModel = Members.CreateRegistrationModel("Custom Member");
-    *@
-
 var registerModel = Members.CreateRegistrationModel();
-
-    @*
-        Configurable here:
-
-        registerModel.RedirectUrl       - Optional. What path to redirect to if registration is successful.
-                                          By default the member will be redirected to the current umbraco page
-                                          unless this is specified.
-
-        registerModel.UsernameIsEmail   - the default is true
-                                          if you want the username to be different from the email
-                                          address, set this to true and add a new Username field in
-                                          the form below
-
-                                          @Html.LabelFor(m => registerModel.Username)
-                                          @Html.TextBoxFor(m => registerModel.Username)
-                                          @Html.ValidationMessageFor(m => registerModel.Username)
-    *@
-
-Html.EnableClientValidation();
-Html.EnableUnobtrusiveJavaScript();
-Html.RequiresJs("/umbraco_client/ui/jquery.js");
-Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
-Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
-
 var success = TempData["FormSuccess"] != null;
 }
 
-@*NOTE: This RenderJsHere code should be put on your main template page where the rest of your script tags are placed*@
-@Html.RenderJsHere()
 
+    
+<div class="content-wrap">
+
+    <div class="container clearfix">
+
+        <div class="col_one_third nobottommargin">
+
+            <div class="well well-lg nobottommargin">
+@using (Html.BeginUmbracoForm<UmbLoginController>("HandleLogin"))
+{
+   
+           
+                    <fieldset>
+                        <h3>Login to your Account</h3>
+                        @Html.ValidationSummary("loginModel", true)
+                        <div class="col_full">
+
+                            @Html.LabelFor(m => loginModel.Username)
+                            @Html.TextBoxFor(m => loginModel.Username, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => loginModel.Username)
+                        </div>
+
+                        <div class="col_full">
+                            @Html.LabelFor(m => loginModel.Password)
+                            @Html.PasswordFor(m => loginModel.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => loginModel.Password)
+                        </div>
+
+                        <div class="col_full nobottommargin">
+                            <button class="button button-3d nomargin">Login</button>
+
+                        </div>
+                    </fieldset>
+            
+}
+            </div>
+
+        </div>
+
+
+
+
+        <div class="col_two_third col_last nobottommargin">
+
+
+            <h3>Don't have an Account? Register Now.</h3>
 @if (success)
 {
-    @* This message will show if RedirectOnSucces is set to false (default) *@
     <p>Registration succeeeded.</p>
 }
 else
@@ -101,50 +81,61 @@ else
             <legend>Register Member</legend>
 
             @Html.ValidationSummary("registerModel", true)
-
-            @Html.LabelFor(m => registerModel.Name)
-            @Html.TextBoxFor(m => registerModel.Name)
-            @Html.ValidationMessageFor(m => registerModel.Name)
-            <br />
-
-            @Html.LabelFor(m => registerModel.Email)
-            @Html.TextBoxFor(m => registerModel.Email)
-            @Html.ValidationMessageFor(m => registerModel.Email)
-            <br />
-
-            @Html.LabelFor(m => registerModel.Password)
-            @Html.PasswordFor(m => registerModel.Password)
-            @Html.ValidationMessageFor(m => registerModel.Password)
-            <br />
-
-            @if (registerModel.MemberProperties != null)
-            {
-                @*
-                    It will only displays properties marked as "Member can edit" on the "Info" tab of the Member Type.
-                *@
-            for (var i = 0; i < registerModel.MemberProperties.Count; i++)
-            {
-                @Html.LabelFor(m => registerModel.MemberProperties[i].Value, registerModel.MemberProperties[i].Name)
-                @*
-                    By default this will render a textbox but if you want to change the editor template for this property you can
-                    easily change it. For example, if you wanted to render a custom editor for this field called "MyEditor" you would
-                    create a file at ~/Views/Shared/EditorTemplates/MyEditor.cshtml", then you will change the next line of code to
-                    render your specific editor template like:
-                    @Html.EditorFor(m => profileModel.MemberProperties[i].Value, "MyEditor")
-                *@
-                @Html.EditorFor(m => registerModel.MemberProperties[i].Value)
-                @Html.HiddenFor(m => registerModel.MemberProperties[i].Alias)
-             
+            <div class="col_half">
+                @Html.LabelFor(m => registerModel.Name)
+                @Html.TextBoxFor(m => registerModel.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => registerModel.Name)
                 <br />
-                }
-            }
+                </div>
+        
+            <div class="col_half">
+                @Html.LabelFor(m => registerModel.Email)
+                @Html.TextBoxFor(m => registerModel.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => registerModel.Email)
+                <br />
+                </div>
           
+            <div class="col_half">
+                @Html.LabelFor(m => registerModel.Password)
+                @Html.PasswordFor(m => registerModel.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => registerModel.Password)
+                <br />
+                </div>
+             
+                    @if (registerModel.MemberProperties != null)
+                    {
+                        @*
+                    It will only displays properties marked as "Member can edit" on the "Info" tab of the Member Type.
+                        *@
+                    for (var i = 0; i < registerModel.MemberProperties.Count; i++)
+                    {
+                        <div class="col_half">
+                            @Html.LabelFor(m => registerModel.MemberProperties[i].Value, registerModel.MemberProperties[i].Name)
+                            @Html.EditorFor(m => registerModel.MemberProperties[i].Value)
+                            @Html.HiddenFor(m => registerModel.MemberProperties[i].Alias)
 
-            @Html.HiddenFor(m => registerModel.MemberTypeAlias)
-            @Html.HiddenFor(m => registerModel.RedirectUrl)
-            @Html.HiddenFor(m => registerModel.UsernameIsEmail)
+                            <br />
+                            </div>
+                       
+                        }
+                    }
 
-            <button>Register</button>
-        </fieldset>
+            <div class="col_half">
+                @Html.HiddenFor(m => registerModel.MemberTypeAlias)
+                @Html.HiddenFor(m => registerModel.RedirectUrl)
+                @Html.HiddenFor(m => registerModel.UsernameIsEmail)
+                </div>
+            <div class="clear"></div>
+                <button class="button button-3d button-black nomargin">Register</button>
+</fieldset>
     }
 }
+
+
+
+        </div>
+
+    </div>
+
+</div>
+

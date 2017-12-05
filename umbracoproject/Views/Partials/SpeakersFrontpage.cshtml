@@ -10,7 +10,7 @@
 
 
 @{
-    var speakers = Model.Content.Site().Descendants<NewSpeakerPost>();
+    var speakers = Model.Content.Site().Descendants<NewSpeakerPost>().Take(5);
 
     foreach (var item in speakers)
     {

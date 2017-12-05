@@ -1,5 +1,69 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.SpeakersPost>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = "SiteMaster.cshtml";
+    Layout = "SiteMaster.cshtml";
 }
+
+<div class="content-wrap">
+    <div class="container clearfix">
+<div class="row clearfix">
+
+    @{
+        var speakers = Model.Content.Site().Descendants<NewSpeakerPost>();
+
+        foreach (var item in speakers)
+        {
+            @*<div class="col_one_fifth" style="    width: 15.8%;
+                margin-left: 2%;
+                margin-right: 2%;">
+
+                                <div class="team">
+                                    <div class="team-image">
+                                        <img class="portfolio-image" src="@item.SpeakerPicturePost.Url" alt="@item.SpeakernamePost">
+                                    </div>
+                                    <div class="team-desc">
+                                        <a href="@item.Url"> <div class="team-title"><h4>@item.SpeakernamePost</h4></div> </a>
+                                        <div class="team-content">@item.SpeakerDescriptionPost</div>
+                                    </div>
+                                </div>
+                            </div>*@
+
+
+
+
+
+
+
+            <div class="col-md-6 bottommargin">
+                <div class="team team-list clearfix">
+                    <div class="team-image">
+                        <img src="@item.SpeakerPicturePost.Url" alt="@item.SpeakernamePost" />
+                    </div>
+                    <div class="team-desc">
+                        <a href="@item.Url">  <div class="team-title"><h4>@item.SpeakernamePost</h4></div> </a>
+                        <div class="team-content">
+                            <p>@item.SpeakerDescriptionPost</p>
+                        </div>
+                        <a href="#" class="social-icon si-rounded si-small si-light si-facebook">
+                            <i class="icon-facebook"></i>
+                            <i class="icon-facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon si-rounded si-small si-light si-twitter">
+                            <i class="icon-twitter"></i>
+                            <i class="icon-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon si-rounded si-small si-light si-gplus">
+                            <i class="icon-gplus"></i>
+                            <i class="icon-gplus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+        }
+
+    }
+    </div>
+        </div>
+    </div>
+    @*speakers end*@
