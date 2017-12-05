@@ -286,9 +286,14 @@
     <Content Include="Views\FrontPage.cshtml" />
     <Content Include="Views\SiteMaster.cshtml" />
     <Content Include="Views\Partials\Navbar.cshtml" />
-    <Content Include="Views\NewSpeaker.cshtml" />
     <Content Include="Views\Speakers.cshtml" />
     <Content Include="Views\Partials\SpeakersFrontpage.cshtml" />
+    <Content Include="Views\Partials\Schedule.cshtml" />
+    <Content Include="Views\PracticalInfo.cshtml" />
+    <Content Include="Views\Schedule.cshtml" />
+    <Content Include="Views\LoginPage.cshtml" />
+    <Content Include="Views\Partials\Loginpage.cshtml" />
+    <Content Include="Views\NewSpeaker.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
