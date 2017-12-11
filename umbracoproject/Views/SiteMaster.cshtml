@@ -5,13 +5,6 @@
 
 
 
-
-
-
-
-        
-        @*@Model.Content.Site().AncestorOrSelf("frontPage2").GetPropertyValue("footerText")*@
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -66,6 +59,7 @@
                 <div class="container clearfix">
 
                     <div class="col_half">
+                        @*Getting information from front page footer property*@
                         @Model.Content.Site().AncestorOrSelf("frontPage2").GetPropertyValue("footerText")<br>
                         <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
                     </div>

@@ -5,6 +5,9 @@
 @using System.Web.Mvc.Html
 @using Umbraco.Web
 @using Umbraco.Web.Controllers
+@using Umbraco.Core.Models;
+@using Umbraco.Core.Services;
+@using umbracoproject.Controllers;
 
 @{
     var loginModel = new LoginModel();
@@ -14,7 +17,7 @@
 
 }
 
-
+@*Login and register functions, register not working completely, after registering it is required to go to backoffice and assign a role to the user *@
 
 
 @{
@@ -66,11 +69,16 @@ var success = TempData["FormSuccess"] != null;
 
 
         <div class="col_two_third col_last nobottommargin">
-
+@{ 
+  
+}
 
             <h3>Don't have an Account? Register Now.</h3>
 @if (success)
 {
+  
+
+
     <p>Registration succeeeded.</p>
 }
 else
@@ -100,24 +108,42 @@ else
                 @Html.PasswordFor(m => registerModel.Password, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => registerModel.Password)
                 <br />
-                </div>
+                @{ 
+
+
+//DOESNT WORK FOR SOME REASON WEIRD ERROR
+
+//var ma = ApplicationContext.Current.Services.MemberService;
+//var man = ApplicationContext.Current.Services.MemberGroupService;
+//ma.AssignRole(registerModel.Username, "NormalUser");
+
+
+
+
+
+
+
+                }
+                   
+
+            
+            </div>
              
                     @if (registerModel.MemberProperties != null)
                     {
-                        @*
-                    It will only displays properties marked as "Member can edit" on the "Info" tab of the Member Type.
-                        *@
+                    
                     for (var i = 0; i < registerModel.MemberProperties.Count; i++)
                     {
                         <div class="col_half">
                             @Html.LabelFor(m => registerModel.MemberProperties[i].Value, registerModel.MemberProperties[i].Name)
                             @Html.EditorFor(m => registerModel.MemberProperties[i].Value)
                             @Html.HiddenFor(m => registerModel.MemberProperties[i].Alias)
-
+                        
                             <br />
                             </div>
-                       
+
                         }
+
                     }
 
             <div class="col_half">

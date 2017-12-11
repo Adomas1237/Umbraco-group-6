@@ -3,58 +3,8 @@
 @{
     Layout = "SiteMaster.cshtml";
 }
-@*
-            @Model.Content.SummaryPost
 
-
-
-    @Model.Content.ReferencesPost
-
-            @Model.Content.ThemesFrontPageDescription
-     
-            @{
-                var Themesinfo = Model.Content.NestedThemesContent;
-                foreach (var item in Themesinfo)
-                {
-                    <li class="track">
-                        <div class="inner">
-                            <div class="description">
-                                <h3>@item.GetPropertyValue("topicThemes")</h3>
-                                <p>
-                                    @item.GetPropertyValue("descriptionThemes")
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                }
-            }
-
-      
-        @Html.Partial("SpeakersFrontpage")
-
-
-        @Html.Partial("Schedule")
-       
-@{     
-
-    var extraitems = Model.Content.Extrafrontpage;
-
-    foreach (var item in extraitems)
-    {
-
-    <!-- Target audience -->
-    <section id="target-audience" class="themes">
-        <div class="block">
-            <h2 class="headline">@item.GetPropertyValue("topicThemes")</h2>
-            <p class="abstract">
-            @item.GetPropertyValue("descriptionThemes")   
-            </p>
-        </div>
-    </section>
-        }
-    }
-
-    *@
+          
 
 <section id="slider" class="slider-parallax full-screen dark" style="overflow: hidden; background: url('@Model.Content.BackgroundPicture.Url') no-repeat center center;background-size: cover;">
 
@@ -168,6 +118,7 @@
             <div class="fslider testimonial testimonial-full" data-animation="fade" data-arrows="false">
                 <div class="flexslider">
                     <div class="slider-wrap">
+                        @*References , had to use new ReferencePost to access it's strong typed properties*@
                         @{
 
                             var extraitems = Model.Content.ReferenceSlidePost;
