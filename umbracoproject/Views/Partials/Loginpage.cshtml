@@ -111,11 +111,10 @@ else
                 @{ 
 
 
-//DOESNT WORK FOR SOME REASON WEIRD ERROR
-
-//var ma = ApplicationContext.Current.Services.MemberService;
-//var man = ApplicationContext.Current.Services.MemberGroupService;
-//ma.AssignRole(registerModel.Username, "NormalUser");
+                    //DOESNT WORK FOR SOME REASON WEIRD ERROR
+                    var membserv = ApplicationContext.Current.Services.MemberGroupService;
+                    var memb = ApplicationContext.Current.Services.MemberService;
+                    memb.AssignRole(registerModel.Username, "NormalUser");
 
 
 
